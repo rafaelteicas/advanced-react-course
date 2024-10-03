@@ -2,11 +2,13 @@
   "name": "boilerplate-apps-router",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "generate": "npx plop --plopfile generators/plopfile.js",
     "prepare": "husky install",
     "test": "jest",
     "test:watch": "jest --watch --maxWorkers=25%",
@@ -16,6 +18,7 @@
   },
   "dependencies": {
     "next": "14.2.13",
+    "plop": "4.0.1",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "6.1.13"
