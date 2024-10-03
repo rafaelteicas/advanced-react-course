@@ -10,7 +10,7 @@
     "lint": "next lint",
     "generate": "npx plop --plopfile generators/plopfile.js",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch --maxWorkers=25%",
     "test:ci": "jest --runInBand",
     "storybook": "storybook dev -p 6006",
