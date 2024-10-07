@@ -529,6 +529,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     slug: Schema.Attribute.UID<'name'>;
+    games: Schema.Attribute.Relation<'oneToMany', 'api::game.game'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -578,6 +579,7 @@ export interface ApiGameGame extends Struct.CollectionTypeSchema {
     singularName: 'game';
     pluralName: 'games';
     displayName: 'Game';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -586,7 +588,6 @@ export interface ApiGameGame extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     slug: Schema.Attribute.UID<'name'>;
     short_description: Schema.Attribute.Text;
-    description: Schema.Attribute.Blocks;
     price: Schema.Attribute.Decimal &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<0>;
@@ -599,6 +600,27 @@ export interface ApiGameGame extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    platforms: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    developers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    publisher: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

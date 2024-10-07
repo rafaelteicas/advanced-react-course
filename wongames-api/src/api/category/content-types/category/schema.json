@@ -21,6 +21,12 @@
       "type": "uid",
       "targetField": "name",
       "required": false
+    },
+    "games": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::game.game",
+      "mappedBy": "publisher"
     }
   }
 }
